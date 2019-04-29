@@ -1,0 +1,23 @@
+{
+	"format_version": 1,
+	"imports":
+	[
+        {
+            "target_table": "TB.Localizacao",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "Localizacao.csv",
+                "has_header": true,
+				"type_config" : { 
+					"delimiter" : ",", 
+					"do_quote" : true
+				} 
+            },
+            "import_settings": {
+                "import_columns": [
+					"id_loc","localizacao"
+				]
+            }
+        }
+	]
+}

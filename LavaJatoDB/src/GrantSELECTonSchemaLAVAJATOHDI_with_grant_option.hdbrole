@@ -1,0 +1,10 @@
+{ 
+  "role":{ 
+    "name":"GrantSELECTonSchemaLAVAJATOHDI_with_grant_option#", 
+    "schema_privileges":[ 
+      { 
+        "privileges_with_grant_option":[ "SELECT" ] 
+      } 
+    ] 
+  } 
+}

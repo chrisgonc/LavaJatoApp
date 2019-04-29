@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="TransacaoFinanceiraCV" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="TransacaoFinanceiraCV.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TB.Pessoa">
+    <resourceUri>TB.Pessoa</resourceUri>
+  </DataSource>
+  <DataSource id="TB.TransacaoFinanceira">
+    <resourceUri>TB.TransacaoFinanceira</resourceUri>
+  </DataSource>
+  <DataSource id="Join_2$$$$TB.Pessoa$$">
+    <resourceUri>TB.Pessoa</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="nomePessoaOrigem"/>
+      <viewAttribute id="funcaoPessoaOrigem"/>
+      <viewAttribute id="pessoaOrigem" aggregationType="sum"/>
+      <viewAttribute id="pessoaDestino" aggregationType="sum"/>
+      <viewAttribute id="localizacaoOrigem" aggregationType="sum"/>
+      <viewAttribute id="localizacaoDestino" aggregationType="sum"/>
+      <viewAttribute id="data" aggregationType="min"/>
+      <viewAttribute id="valor" aggregationType="sum"/>
+      <viewAttribute id="moeda"/>
+      <viewAttribute id="tipoTransacao"/>
+      <viewAttribute id="observacao"/>
+      <viewAttribute hidden="true" id="JOIN$cpf$pessoaOrigem"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="TB.Pessoa">
+      <mapping xsi:type="Calculation:AttributeMapping" target="nomePessoaOrigem" source="nome"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="funcaoPessoaOrigem" source="funcao"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$cpf$pessoaOrigem" source="cpf"/>
+    </input>
+    <input node="TB.TransacaoFinanceira">
+      <mapping xsi:type="Calculation:AttributeMapping" target="pessoaOrigem" source="pessoaOrigem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pessoaDestino" source="pessoaDestino"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="localizacaoOrigem" source="localizacaoOrigem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="localizacaoDestino" source="localizacaoDestino"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="data" source="data"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="valor" source="valor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="moeda" source="moeda"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tipoTransacao" source="tipoTransacao"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="observacao" source="observacao"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$cpf$pessoaOrigem" source="pessoaOrigem"/>
+    </input>
+    <joinAttribute name="JOIN$cpf$pessoaOrigem"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="nomePessoaOrigem"/>
+      <viewAttribute id="funcaoPessoaOrigem"/>
+      <viewAttribute id="pessoaOrigem" aggregationType="sum"/>
+      <viewAttribute id="pessoaDestino" aggregationType="sum"/>
+      <viewAttribute id="localizacaoOrigem" aggregationType="sum"/>
+      <viewAttribute id="localizacaoDestino" aggregationType="sum"/>
+      <viewAttribute id="data" aggregationType="min"/>
+      <viewAttribute id="valor" aggregationType="sum"/>
+      <viewAttribute id="moeda"/>
+      <viewAttribute id="tipoTransacao"/>
+      <viewAttribute id="observacao"/>
+      <viewAttribute id="nomePessoaDestino"/>
+      <viewAttribute id="funcaoPessoaDestino"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="nomePessoaOrigem" source="nomePessoaOrigem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="funcaoPessoaOrigem" source="funcaoPessoaOrigem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pessoaOrigem" source="pessoaOrigem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pessoaDestino" source="pessoaDestino"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="localizacaoOrigem" source="localizacaoOrigem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="localizacaoDestino" source="localizacaoDestino"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="data" source="data"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="valor" source="valor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="moeda" source="moeda"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tipoTransacao" source="tipoTransacao"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="observacao" source="observacao"/>
+    </input>
+    <input node="Join_2$$$$TB.Pessoa$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="nomePessoaDestino" source="nome"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="funcaoPessoaDestino" source="funcao"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pessoaDestino" source="cpf"/>
+    </input>
+    <joinAttribute name="pessoaDestino"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_2">
+  <attributes>
+    <attribute id="pessoaOrigem" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="pessoaOrigem"/>
+      <keyMapping columnObjectName="Join_2" columnName="pessoaOrigem"/>
+    </attribute>
+    <attribute id="nomePessoaOrigem" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="nome"/>
+      <keyMapping columnObjectName="Join_2" columnName="nomePessoaOrigem"/>
+    </attribute>
+    <attribute id="funcaoPessoaOrigem" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="funcao"/>
+      <keyMapping columnObjectName="Join_2" columnName="funcaoPessoaOrigem"/>
+    </attribute>
+    <attribute id="localizacaoOrigem" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="localizacaoOrigem"/>
+      <keyMapping columnObjectName="Join_2" columnName="localizacaoOrigem"/>
+    </attribute>
+    <attribute id="pessoaDestino" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="pessoaDestino"/>
+      <keyMapping columnObjectName="Join_2" columnName="pessoaDestino"/>
+    </attribute>
+    <attribute id="nomePessoaDestino" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="nome"/>
+      <keyMapping columnObjectName="Join_2" columnName="nomePessoaDestino"/>
+    </attribute>
+    <attribute id="funcaoPessoaDestino" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="funcao"/>
+      <keyMapping columnObjectName="Join_2" columnName="funcaoPessoaDestino"/>
+    </attribute>
+    <attribute id="localizacaoDestino" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="localizacaoDestino"/>
+      <keyMapping columnObjectName="Join_2" columnName="localizacaoDestino"/>
+    </attribute>
+    <attribute id="data" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="data"/>
+      <keyMapping columnObjectName="Join_2" columnName="data"/>
+    </attribute>
+    <attribute id="moeda" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="moeda"/>
+      <keyMapping columnObjectName="Join_2" columnName="moeda"/>
+    </attribute>
+    <attribute id="tipoTransacao" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tipoTransacao"/>
+      <keyMapping columnObjectName="Join_2" columnName="tipoTransacao"/>
+    </attribute>
+    <attribute id="observacao" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="observacao"/>
+      <keyMapping columnObjectName="Join_2" columnName="observacao"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="valor" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="valor"/>
+      <measureMapping columnObjectName="Join_2" columnName="valor"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="false" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="87" y="370"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="TB.Pessoa" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="140.419921875"/>
+    </shape>
+    <shape modelObjectName="TB.TransacaoFinanceira" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="202.720703125"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="87" y="228"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="191.7783203125"/>
+    </shape>
+    <shape modelObjectName="TB.Pessoa" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="140.419921875"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

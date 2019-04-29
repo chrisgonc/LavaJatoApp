@@ -1,0 +1,1 @@
+{   "role":{   "name": "TransacaoFinanceira_UNMASKED",   "object_privileges":[   {      "name":"TransacaoFinanceiraCV",      "type": "VIEW",      "privileges":["SELECT","UNMASKED"]   }   ]   } }

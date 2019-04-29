@@ -1,0 +1,1 @@
+{   "role":{   "name": "Localizacao_SELECT_WITH_GRANT_OPTION#",   "object_privileges":[   {      "name":"TB.Localizacao",      "type": "TABLE",      "privileges_with_grant_option":["SELECT"]   }   ]   } }

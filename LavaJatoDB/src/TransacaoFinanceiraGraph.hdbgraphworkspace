@@ -1,0 +1,8 @@
+graph workspace "TransacaoFinanceiraGraph"
+ edge table "TB.TransacaoFinanceira"
+  source column "pessoaOrigem"
+  target column "pessoaDestino"
+  key column "id_tf"
+ vertex table "TB.Pessoa"
+  key column "cpf"
+ ;
