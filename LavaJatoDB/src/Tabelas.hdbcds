@@ -1,4 +1,4 @@
-﻿context TB {
+context TB {
 
     entity Pessoa {
         key cpf 		: Integer64 not null;
