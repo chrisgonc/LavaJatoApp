@@ -1,3 +1,19 @@
 ID: LavaJatoApp
 _schema-version: '2.1'
 version: 0.0.1
+
+modules:
+ - name: LavaJatoDB
+   type: hdb
+   path: LavaJatoDB
+   requires:
+    - name: hdi_LavaJatoDB
+
+resources:
+ - name: hdi_LavaJatoDB
+   parameters:
+      config:
+         schema: LAVAJATOHDI
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
