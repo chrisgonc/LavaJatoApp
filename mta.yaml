@@ -9,6 +9,17 @@ modules:
    requires:
     - name: hdi_LavaJatoDB
 
+
+ - name: xsjs
+   type: nodejs
+   path: xsjs
+   requires:
+    - name: hdi_LavaJatoDB
+   provides:
+    - name: xsjs_api
+      properties:
+         url: ${default-url}
+
 resources:
  - name: hdi_LavaJatoDB
    parameters:

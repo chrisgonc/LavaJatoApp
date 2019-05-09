@@ -1,0 +1,1 @@
+service namespace "LavaJatoApp.LavaJatoDB" { "TransacaoFinanceiraCV" as "TransacaoFinanceiraCV" key ("pessoaOrigem");}
